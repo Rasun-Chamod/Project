@@ -4,9 +4,8 @@ from .models import User, Profile
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    fieldsets = UserAdmin.fieldsets + (
-        ("Extra Info", {"fields": ("email",)}),
-    )
+    list_display = ("username", "email", "is_staff", "is_active")  # optional tweaks
+    search_fields = ("username", "email")
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
