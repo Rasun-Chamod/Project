@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'activity',
     'downloads',
     'recommendations',
+    'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
