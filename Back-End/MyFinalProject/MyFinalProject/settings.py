@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'mediahub',
     'activity',
+    'downloads',
 ]
 
 MIDDLEWARE = [
