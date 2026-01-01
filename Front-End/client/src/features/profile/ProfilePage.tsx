@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import api from "../../api/client";
+import api from "../../api/client.ts";
 
 interface ProfileForm {
   bio?: string;

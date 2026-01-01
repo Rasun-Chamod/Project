@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/auth";
+import { useAuthStore } from "../store/auth.ts";
 
 const DashboardLayout = () => {
   const clearAuth = useAuthStore((state) => state.clearAuth);

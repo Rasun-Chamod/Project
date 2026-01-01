@@ -1,12 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import ProtectedRoute from "../components/ProtectedRoute";
-import AnalyticsPage from "../features/analytics/AnalyticsPage";
-import LoginPage from "../features/auth/LoginPage";
-import RegisterPage from "../features/auth/RegisterPage";
-import DownloadsPage from "../features/downloads/DownloadsPage";
-import ProfilePage from "../features/profile/ProfilePage";
-import RecommendationsPage from "../features/recommendations/RecommendationsPage";
-import DashboardLayout from "../layouts/DashboardLayout";
+import ProtectedRoute from "../components/ProtectedRoute.tsx";
+import AnalyticsPage from "../features/analytics/AnalyticsPage.tsx";
+import LoginPage from "../features/auth/LoginPage.tsx";
+import RegisterPage from "../features/auth/RegisterPage.tsx";
+import DownloadsPage from "../features/downloads/DownloadsPage.tsx";
+import ProfilePage from "../features/profile/ProfilePage.tsx";
+import RecommendationsPage from "../features/recommendations/RecommendationsPage.tsx";
+import DashboardLayout from "../layouts/DashboardLayout.tsx";
 
 const AppRoutes = () => (
   <Routes>

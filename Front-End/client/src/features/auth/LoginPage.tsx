@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import api from "../../api/client";
-import { useAuthStore } from "../../store/auth";
+import api from "../../api/client.ts";
+import { useAuthStore } from "../../store/auth.ts";
 
 interface LoginForm {
   username: string;
