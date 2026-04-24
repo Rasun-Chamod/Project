@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import api from "../../api/client.ts";
@@ -9,6 +10,7 @@ interface LoginForm {
 }
 
 const LoginPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -55,11 +57,69 @@ const LoginPage = () => {
 
         <label>
           Password
-          <input
-            type="password"
-            autoComplete="current-password"
-            {...register("password", { required: "Password is required" })}
-          />
+          <div className="auth__password">
+            <input
+              type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
+              {...register("password", { required: "Password is required" })}
+            />
+            <button
+              type="button"
+              className="auth__toggle"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? (
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M3.5 3.5 20.5 20.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M9.9 5.2c.7-.2 1.4-.3 2.1-.3 5.5 0 9.3 5.1 9.3 7.1 0 .7-.6 2-1.8 3.3"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M6.2 7.3C4.3 8.7 3 10.6 2.7 12c.7 2.3 4.4 7.1 9.3 7.1 1.4 0 2.7-.4 3.8-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M9 9a4 4 0 0 0 6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M12 5c-5.5 0-9.3 5.1-9.3 7.1S6.5 19.2 12 19.2s9.3-5.1 9.3-7.1S17.5 5 12 5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
         </label>
         {errors.password && (
           <p className="auth__error">{errors.password.message}</p>
