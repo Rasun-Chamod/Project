@@ -39,6 +39,8 @@ const LoginPage = () => {
     }
   };
 
+  const adminUrl = `${import.meta.env.VITE_API_URL}/admin/`;
+
   return (
     <div className="auth">
       <form className="auth__form" onSubmit={handleSubmit(onSubmit)}>
@@ -134,6 +136,14 @@ const LoginPage = () => {
         <p className="auth__prompt">
           Need an account? <Link to="/register">Register</Link>
         </p>
+        <a
+          className="auth__admin"
+          href={adminUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Admin access
+        </a>
       </form>
     </div>
   );

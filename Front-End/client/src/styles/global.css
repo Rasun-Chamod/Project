@@ -1,7 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+
 :root {
-  color: #0f172a;
-  background-color: #f8fafc;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0b1d2a;
+  background-color: #f5f7fb;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  --ink: #0b1d2a;
+  --muted: #5b6b7a;
+  --accent: #ff7a59;
+  --accent-2: #2ec4b6;
+  --panel: #ffffff;
+  --shadow: 0 16px 40px rgba(12, 25, 38, 0.12);
 }
 
 * {
@@ -10,7 +18,7 @@
 
 body {
   margin: 0;
-  background: #f8fafc;
+  background: radial-gradient(circle at top, #fef6ee 0%, #f5f7fb 45%, #edf2fb 100%);
   color: inherit;
 }
 
@@ -33,22 +41,27 @@ button {
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 122, 89, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(46, 196, 182, 0.18), transparent 50%);
 }
 
 .auth__form {
-  width: min(420px, 100%);
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-  padding: 2.5rem;
+  width: min(440px, 100%);
+  background: var(--panel);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 2.75rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  animation: floatIn 0.8s ease;
 }
 
 .auth__form h2 {
   margin: 0 0 0.5rem;
-  font-size: 1.75rem;
+  font-size: 2rem;
+  font-family: "Fraunces", serif;
 }
 
 .auth__form label {
@@ -56,15 +69,16 @@ button {
   flex-direction: column;
   gap: 0.5rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--ink);
 }
 
 .auth__form input,
 .auth__form textarea {
-  border: 1px solid #cbd5f5;
-  border-radius: 8px;
-  padding: 0.75rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
   font-size: 1rem;
+  background: #f9fbff;
 }
 
 .auth__password {
@@ -80,19 +94,20 @@ button {
 }
 
 .auth__toggle {
-  background: transparent;
+  background: #ffffff;
   border: none;
-  padding: 0.6rem 0.7rem;
-  height: calc(100% - 2px);
-  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  height: calc(100% - 4px);
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  color: #4b5563;
+  box-shadow: 0 6px 14px rgba(12, 25, 38, 0.12);
 }
 
 .auth__toggle:hover {
-  color: #1f2937;
+  color: var(--ink);
 }
 
 .auth__toggle svg {
@@ -101,13 +116,14 @@ button {
 }
 
 .auth__form button {
-  background: #2563eb;
-  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #ffb26b);
+  color: #1a1a1a;
   border: none;
-  padding: 0.85rem;
-  border-radius: 8px;
-  font-weight: 600;
+  padding: 0.95rem;
+  border-radius: 12px;
+  font-weight: 700;
   margin-top: 0.5rem;
+  box-shadow: 0 12px 24px rgba(255, 122, 89, 0.35);
 }
 
 .auth__form button:disabled {
@@ -123,7 +139,7 @@ button {
 
 .auth__prompt {
   text-align: center;
-  color: #475569;
+  color: var(--muted);
 }
 
 .auth__grid {
@@ -135,14 +151,15 @@ button {
 .layout {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 260px 1fr;
-  background: #f1f5f9;
+  grid-template-columns: 280px 1fr;
+  background: radial-gradient(circle at top right, rgba(46, 196, 182, 0.12), transparent 45%),
+    #f5f7fb;
 }
 
 .layout__sidebar {
-  background: linear-gradient(180deg, #1e3a8a 0%, #312e81 100%);
+  background: linear-gradient(160deg, #0f172a 0%, #1b2a3a 55%, #20314d 100%);
   color: #f8fafc;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -150,7 +167,8 @@ button {
 
 .layout__logo {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  font-family: "Fraunces", serif;
 }
 
 .layout__nav {
@@ -160,26 +178,45 @@ button {
 }
 
 .layout__nav a {
-  color: rgba(248, 250, 252, 0.9);
-  font-weight: 500;
+  color: rgba(248, 250, 252, 0.88);
+  font-weight: 600;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
 }
 
 .layout__nav a:hover {
   color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.auth__admin {
+  align-self: center;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.55);
+  text-decoration: none;
+}
+
+.auth__admin:hover {
+  color: rgba(15, 23, 42, 0.85);
+  text-decoration: none;
 }
 
 .layout__logout {
   margin-top: auto;
-  background: rgba(248, 250, 252, 0.1);
+  background: rgba(248, 250, 252, 0.14);
   border: none;
   color: #fff;
   padding: 0.75rem;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: 600;
 }
 
 .layout__content {
-  padding: 2.5rem;
+  padding: 2.75rem 3rem;
 }
 
 .recommendations__grid {
@@ -190,17 +227,25 @@ button {
 
 .card {
   background: #fff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+  border-radius: 16px;
+  padding: 1.6rem;
+  box-shadow: 0 14px 30px rgba(12, 25, 38, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(12, 25, 38, 0.12);
 }
 
 .analytics__section {
   background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+  padding: 1.75rem;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(12, 25, 38, 0.08);
   margin-bottom: 2rem;
+  border: 1px solid rgba(15, 23, 42, 0.05);
 }
 
 .profile__form {
@@ -208,10 +253,11 @@ button {
   flex-direction: column;
   gap: 1rem;
   background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
-  max-width: 540px;
+  padding: 1.75rem;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(12, 25, 38, 0.08);
+  max-width: 560px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 .profile__form textarea,
@@ -225,9 +271,10 @@ button {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 12px 28px rgba(12, 25, 38, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 .downloads th,
@@ -237,12 +284,23 @@ button {
 }
 
 .downloads button {
-  background: #2563eb;
-  color: #fff;
+  background: linear-gradient(135deg, var(--accent-2), #6ee7d1);
+  color: #0b1d2a;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 600;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 900px) {
