@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %} {% load static %} {% block extrahead %} {{
+block.super }}
+<link rel="stylesheet" href="{% static 'admin/custom.css' %}" />
+{% endblock %} {% block branding %}
+<h1 id="site-name" class="brand">
+  <span class="brand-dot"></span>
+  Recommenda Admin
+</h1>
+{% endblock %} {% block nav-global %}
+<div class="admin-topbar__search">
+  <span>Search...</span>
+</div>
+<div class="admin-topbar__actions">
+  <span class="admin-topbar__bell"></span>
+  <span class="admin-topbar__user">AD</span>
+</div>
+{% endblock %} {% block title %}Recommenda Admin{% endblock %}

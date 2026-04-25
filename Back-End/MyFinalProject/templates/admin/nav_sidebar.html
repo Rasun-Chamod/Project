@@ -1,0 +1,23 @@
+{% load i18n %}
+<nav class="admin-sidebar">
+  <div class="admin-sidebar__section">
+    <p class="admin-sidebar__title">Navigation</p>
+    <a href="{% url 'admin:index' %}">Dashboard</a>
+    <a href="/admin/mediahub/mediaitem/?media_type__exact=game">Games</a>
+    <a href="/admin/mediahub/mediaitem/?media_type__exact=movie">Movies</a>
+    <a href="/admin/mediahub/mediaitem/?media_type__exact=tv">TV Shows</a>
+    <a href="/admin/recommendations/recommendationcache/">Recommendations</a>
+    <a href="/admin/accounts/user/">Users</a>
+  </div>
+
+  {% if app_list %}
+  <div class="admin-sidebar__section">
+    <p class="admin-sidebar__title">Apps</p>
+    {% for app in app_list %}
+    <p class="admin-sidebar__app">{{ app.name }}</p>
+    {% for model in app.models %}
+    <a href="{{ model.admin_url }}">{{ model.name }}</a>
+    {% endfor %} {% endfor %}
+  </div>
+  {% endif %}
+</nav>

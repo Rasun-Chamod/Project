@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import api from "../../api/client.ts";
 
@@ -20,7 +21,9 @@ const MEDIA_TYPES = [
 ];
 
 const LibraryPage = () => {
-  const [filter, setFilter] = useState("all");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialFilter = searchParams.get("type") ?? "all";
+  const [filter, setFilter] = useState(initialFilter);
   const [query, setQuery] = useState("");
 
   const { data, isLoading } = useQuery({
@@ -31,6 +34,22 @@ const LibraryPage = () => {
       return response.data as LibraryItem[];
     },
   });
+
+  useEffect(() => {
+    const nextFilter = searchParams.get("type") ?? "all";
+    if (nextFilter !== filter) {
+      setFilter(nextFilter);
+    }
+  }, [filter, searchParams]);
+
+  const updateFilter = (next: string) => {
+    setFilter(next);
+    if (next === "all") {
+      setSearchParams({});
+    } else {
+      setSearchParams({ type: next });
+    }
+  };
 
   const filtered = useMemo(() => {
     if (!data) return [];
@@ -59,7 +78,7 @@ const LibraryPage = () => {
                 key={type.value}
                 type="button"
                 className={filter === type.value ? "is-active" : ""}
-                onClick={() => setFilter(type.value)}
+                onClick={() => updateFilter(type.value)}
               >
                 {type.label}
               </button>

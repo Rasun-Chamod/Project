@@ -1,0 +1,35 @@
+{% extends "admin/index.html" %} {% block content %}
+<div class="dashboard">
+  <header class="dashboard__header">
+    <div>
+      <h2>Dashboard</h2>
+      <p>Quick overview of your content and system.</p>
+    </div>
+  </header>
+
+  <section class="dashboard__stats">
+    <div class="stat-card">
+      <div>
+        <p>Apps</p>
+        <h3>{{ app_list|length }}</h3>
+      </div>
+      <span>Live</span>
+    </div>
+    <div class="stat-card">
+      <div>
+        <p>Models</p>
+        <h3>{{ app_list|length }}</h3>
+      </div>
+      <span>Tracked</span>
+    </div>
+    <div class="stat-card">
+      <div>
+        <p>Admin</p>
+        <h3>Active</h3>
+      </div>
+      <span>Secure</span>
+    </div>
+  </section>
+</div>
+
+{{ block.super }} {% endblock %}
