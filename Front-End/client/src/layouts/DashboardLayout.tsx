@@ -16,6 +16,7 @@ const DashboardLayout = () => {
         <h1 className="layout__logo">Media Recommender</h1>
         <nav className="layout__nav">
           <Link to="/">Recommendations</Link>
+          <Link to="/library">Library</Link>
           <Link to="/analytics">Analytics</Link>
           <Link to="/downloads">Downloads</Link>
           <Link to="/profile">Profile</Link>

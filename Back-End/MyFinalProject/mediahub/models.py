@@ -17,7 +17,8 @@ class Tag(models.Model):
 class MediaItem(models.Model):
     MOVIE = "movie"
     GAME = "game"
-    MEDIA_TYPES = [(MOVIE, "Movie"), (GAME, "Game")]
+    TV_SHOW = "tv"
+    MEDIA_TYPES = [(MOVIE, "Movie"), (GAME, "Game"), (TV_SHOW, "TV Show")]
 
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
     title = models.CharField(max_length=255)
