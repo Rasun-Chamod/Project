@@ -92,18 +92,27 @@ const LibraryPage = () => {
       ) : (
         <div className="library__grid">
           {filtered.map((item) => (
-            <article key={item.id} className="card library__card">
-              {item.thumbnail ? (
-                <img src={item.thumbnail} alt={item.title} />
-              ) : (
-                <div className="library__placeholder">
-                  {item.media_type.toUpperCase()}
+            <article key={item.id} className="library__card">
+              <div className="library__poster">
+                {item.thumbnail ? (
+                  <img src={item.thumbnail} alt={item.title} />
+                ) : (
+                  <div className="library__placeholder">
+                    {item.media_type.toUpperCase()}
+                  </div>
+                )}
+                <div className="library__overlay">
+                  <div className="library__tag">{item.media_type}</div>
+                  <div className="library__rating">
+                    {item.rating_average ? item.rating_average : "--"}
+                  </div>
                 </div>
-              )}
-              <div className="library__meta">
-                <span className="library__type">{item.media_type}</span>
+              </div>
+              <div className="library__details">
                 <h3>{item.title}</h3>
-                {item.synopsis && <p>{item.synopsis}</p>}
+                {item.release_date ? (
+                  <span className="library__date">{item.release_date}</span>
+                ) : null}
               </div>
             </article>
           ))}

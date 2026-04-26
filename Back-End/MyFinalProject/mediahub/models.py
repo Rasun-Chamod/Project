@@ -38,3 +38,67 @@ class MediaItem(models.Model):
     genres = models.ManyToManyField(Genre, related_name="media_items", blank=True)
     tags = models.ManyToManyField(Tag, related_name="media_items", blank=True)
     platforms = models.ManyToManyField(Platform, related_name="media_items", blank=True)
+
+
+class MediaItemQuerySet(models.QuerySet):
+    def movies(self):
+        return self.filter(media_type=MediaItem.MOVIE)
+
+    def games(self):
+        return self.filter(media_type=MediaItem.GAME)
+
+    def tv_shows(self):
+        return self.filter(media_type=MediaItem.TV_SHOW)
+
+
+class MediaItemManager(models.Manager):
+    def get_queryset(self):
+        return MediaItemQuerySet(self.model, using=self._db)
+
+    def movies(self):
+        return self.get_queryset().movies()
+
+    def games(self):
+        return self.get_queryset().games()
+
+    def tv_shows(self):
+        return self.get_queryset().tv_shows()
+
+
+class Movie(MediaItem):
+    objects = MediaItemManager()
+
+    class Meta:
+        proxy = True
+        verbose_name = "Movie"
+        verbose_name_plural = "Movies"
+
+    def save(self, *args, **kwargs):
+        self.media_type = MediaItem.MOVIE
+        return super().save(*args, **kwargs)
+
+
+class TVShow(MediaItem):
+    objects = MediaItemManager()
+
+    class Meta:
+        proxy = True
+        verbose_name = "TV Show"
+        verbose_name_plural = "TV Shows"
+
+    def save(self, *args, **kwargs):
+        self.media_type = MediaItem.TV_SHOW
+        return super().save(*args, **kwargs)
+
+
+class Game(MediaItem):
+    objects = MediaItemManager()
+
+    class Meta:
+        proxy = True
+        verbose_name = "Game"
+        verbose_name_plural = "Games"
+
+    def save(self, *args, **kwargs):
+        self.media_type = MediaItem.GAME
+        return super().save(*args, **kwargs)

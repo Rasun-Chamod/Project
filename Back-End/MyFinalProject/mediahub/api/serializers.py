@@ -16,3 +16,20 @@ class MediaLibraryItemSerializer(serializers.ModelSerializer):
             "release_date",
             "rating_average",
         ]
+
+
+class MediaCatalogItemSerializer(serializers.ModelSerializer):
+    genres = serializers.SlugRelatedField(many=True, read_only=True, slug_field="name")
+
+    class Meta:
+        model = MediaItem
+        fields = [
+            "id",
+            "title",
+            "media_type",
+            "synopsis",
+            "genres",
+            "thumbnail",
+            "release_date",
+            "rating_average",
+        ]
